@@ -64,6 +64,9 @@ dkms.conf
 #Misc
 .DS_Store
 .virtual_documents/
+.vscode
+input.txt
+output.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
