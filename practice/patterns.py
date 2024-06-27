@@ -604,12 +604,85 @@ def pattern21(N):
     pattern21_bottom(N)
 
 
+def pattern21_top_modified(N):
+
+    '''
+        ****  ****
+        ***    ***
+        **      **
+        *        *
+    '''
+    
+    for i in range(N):
+        if i == 0: continue
+        for _ in range(N-i):
+            print("*",end="")
+
+        for _ in range(2*i):
+            print(" ",end="")
+    
+        for _ in range(N-i):
+            print("*",end="")
+        
+        print()
+
 def pattern22(N):
-    pass
+    '''
+        *        *
+        **      **
+        ***    ***
+        ****  ****
+        **********
+        ****  ****
+        ***    ***
+        **      **
+        *        *
+    '''
+    pattern21_bottom(N)
+    pattern21_top_modified(N)
+
+def hollow_square(N):
+    '''
+        * * * * * 
+        *       * 
+        *       * 
+        *       * 
+        * * * * * 
+    '''
+    for i in range(N):
+        for j in range(N):
+            if(i>0 and i<N-1 and j>0 and j<N-1):
+                print(" ",end=" ")
+            else:
+                print("*",end=" ")
+        print()
 
 
+def pattern23(N):
+
+    '''
+        4 4 4 4 4 4 4           0 0 0 0 0 0 0
+        4 3 3 3 3 3 4           0 1 1 1 1 1 0
+        4 3 2 2 2 3 4           0 1 2 2 2 1 0
+        4 3 2 1 2 3 4   ---->   0 1 2 3 2 1 0
+        4 3 2 2 2 3 4           0 1 2 2 2 1 0 
+        4 3 3 3 3 3 4           0 1 1 1 1 1 0 
+        4 4 4 4 4 4 4           0 0 0 0 0 0 0
+
+        Key:
+            4 - currMatrix = NewMatrix
+            values in NewMatrix are min distances
+            4 - min distances = currMatrix
+    '''
+    size = 2*N-1
+
+    for i in range(2*N-1):
+        for j in range(2*N-1):
+            min_distance = min(i,j,size-i-1,size-j-1)
+            print(N-min_distance,end=" ")
+        print()
 
 if __name__ == "__main__":
 
     for line in sys.stdin:
-        pattern22(int(line.strip()))
+        pattern23(int(line.strip()))
