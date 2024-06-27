@@ -251,9 +251,9 @@ def pattern9(N):
     for i in range(1,N+1):
         for j in range(1,N*2):
             if(N-i < j < N+i):
-                print("*",end=" ")
+                print("*",end="")
             else:
-                print(" ",end=" ")
+                print(" ",end="")
         print()
 
 
@@ -280,15 +280,47 @@ def pattern10(N):
     for i in range(1,N+1):
         for j in range(1,N*2):
             if(i-1 < j < 2*N-i+1):
-                print("*",end=" ")
+                print("*",end="")
             else:
-                print(" ",end=" ")
+                print(" ",end="")
         print()
 
 
+def pattern11(N):
+    '''
+            *    
+           ***   
+          *****  
+         ******* 
+        *********
+        *********
+         ******* 
+          *****  
+           ***   
+            *       
+    '''
+    pattern9(N)
+    pattern10(N)
+
+def pattern12(N):
+    '''
+            * 
+            * * 
+            * * * 
+            * * * * 
+            * * * * * 
+            * * * * 
+            * * * 
+            * * 
+            * 
+    '''
+    for i in range(1,N+1):
+        print("*"*i)
+    for i in range(N-1,0,-1):
+        print("*"*i)
 
 
 if __name__ == "__main__":
 
     for line in sys.stdin:
-        pattern10(int(line.strip()))
+        pattern12(int(line.strip()))
