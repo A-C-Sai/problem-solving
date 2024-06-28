@@ -20,7 +20,7 @@ int main()
     marks m1 = 2, m2 = 3;
     cout << m1 << " " << m2 << endl;
 
-    day d = (day)mon;
+    // day d = (day)mon;
 
     return 0;
 }
@@ -95,3 +95,14 @@ int main()
 
 // enum feedback {poor=0,satisfactory=1,good=2,excellent=3};
 // feedback = poor;
+
+/* Loops
+
+    1. for
+    2. while
+    3. do while
+    4. for each
+
+*/
+
+// if the sum of the factors of a number is double the number then it is a perfect number
