@@ -12,15 +12,22 @@ typedef int marks;
 
 int main()
 {
-    int x, y;
-    cin >> x >> y;
-    cout << "Value of x: " << x << endl
-         << "Value of y: " << y << endl;
+    // int x, y;
+    // cin >> x >> y;
+    // cout << "Value of x: " << x << endl
+    //      << "Value of y: " << y << endl;
 
-    marks m1 = 2, m2 = 3;
-    cout << m1 << " " << m2 << endl;
+    // marks m1 = 2, m2 = 3;
+    // cout << m1 << " " << m2 << endl;
 
     // day d = (day)mon;
+
+    int A[] = {2, 4, 7, 5, 9};
+
+    for (auto x : A)
+    {
+        cout << x << endl;
+    }
 
     return 0;
 }
