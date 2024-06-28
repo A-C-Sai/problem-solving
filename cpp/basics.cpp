@@ -113,3 +113,21 @@ int main()
 */
 
 // if the sum of the factors of a number is double the number then it is a perfect number
+
+/* Heap Memory Allocation
+
+    int* p;
+    p = new int[5];
+    delete []p;
+    p = nullptr;
+
+*/
+
+/* Reference
+
+    int c = 10, e = 20;
+    int &d = c; // now d is an alias for c (l-value / address of c) (reference; doesn't occupy any memory) (points to same location as c) (within the main function it will always point to c, cannot change this)
+    cout << &c << " " << d << endl;
+    cout << &c << " " << &d << endl;
+
+*/
