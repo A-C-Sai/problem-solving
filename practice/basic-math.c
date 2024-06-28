@@ -82,8 +82,45 @@ void gcd(int a, int b) // O(min(a,b))
     printf("%d\n", gcd);
 }
 
+/* Euclidean Algorithm
+
+    gcd(a,b) = gcd(a-b,b) given a > b
+    gcd(1,X) = 1
+    gcd(X,X) = X
+
+    gcd(a,b) = gcd(a%b,b) given a > b
+
+*/
+
+int euclidean(int a, int b) // O(logΦ(min(a,b)))
+{
+
+    while (a > 0 && b > 0)
+    {
+        if (a > b)
+            a = a % b;
+        else
+            b = b % a;
+    }
+
+    return a ? a : b;
+}
+
+int rEuclidean(int a, int b)
+{
+
+    if (a == 0)
+    {
+        return b;
+    }
+
+    // return a > b ? euclidean(a - b, b) : euclidean(b - a, a);
+    return a > b ? euclidean(a % b, b) : euclidean(b % a, a);
+}
+
 int main()
 {
 
+    printf("%d\n", euclidean(1024, 348));
     return 0;
 }
