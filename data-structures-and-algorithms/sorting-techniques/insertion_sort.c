@@ -18,7 +18,7 @@ int main()
     */
 
     int i, j, temp;
-    for (i = 1; i < n; i++)
+    for (i = 1; i < n; i++) // Aussume 1st element is already in sorted position
     {
         j = i - 1;
         temp = A[i];
