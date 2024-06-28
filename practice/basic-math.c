@@ -67,11 +67,23 @@ void isPrime(int n)
     c == 2 ? printf("%d Prime\n", n) : printf("%d Not Prime\n", n);
 }
 
+void gcd(int a, int b) // O(min(a,b))
+{
+    int min = a < b ? a : b;
+    int gcd = 1;
+    for (int i = min; i >= 1; i--)
+    {
+        if (a % i == 0 && b % i == 0)
+        {
+            gcd = i;
+            break;
+        }
+    }
+    printf("%d\n", gcd);
+}
+
 int main()
 {
-    for (int i = 0; i <= 36; i++)
-    {
-        isPrime(i);
-    }
+
     return 0;
 }
