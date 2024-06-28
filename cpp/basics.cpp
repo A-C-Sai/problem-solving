@@ -131,3 +131,17 @@ int main()
     cout << &c << " " << &d << endl;
 
 */
+
+// functions can be overloaded different number of parameters, different data types of paramentes and different return type. If the number of paramneters and types match but return type is different it will result in a name conflict.
+
+/* Template Functions (generic functions in terms of datatype)
+    template <class T, class R>
+    T max(T x, R y){
+        if (x>y) return x;
+        else return y;
+    }
+*/
+
+// functions can have default parameters
+// parameter passing - pass by reference - in-line function
+// we can return by reference allowing us to use function on the left hand side of assignment (not sure about use case)
