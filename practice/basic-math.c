@@ -24,14 +24,14 @@ int reverseNumber(int x)
 
 // Amstrong Numbers - numbers whose sum of cubes of each individual digit result in the original number
 
-void printDivisors(double n)
+void printDivisors(int n)
 {
-    for (double i = 1; i * i <= n; i++) // O(sqrt(N))
+    for (int i = 1; i * i <= n; i++) // O(sqrt(N))
     {
-        if ((int)n % (int)i == 0)
+        if (n % i == 0)
         {
             printf("%d\n", (int)i);
-            if ((int)n / (int)i != i)
+            if (n / i != i)
                 printf("%d\n", (int)n / (int)i);
         }
     }
