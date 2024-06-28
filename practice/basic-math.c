@@ -37,8 +37,41 @@ void printDivisors(double n)
     }
 }
 
+void isPrimeBruteForce(int n)
+{
+    // A number which has only 2 factors i.e. 1 and itself
+
+    int c = 1;
+    for (int i = 1; i < n; i++)
+    {
+        if (n % i == 0)
+            c++;
+    }
+
+    c == 2 ? printf("%d Prime\n", n) : printf("%d Not Prime\n", n);
+}
+
+void isPrime(int n)
+{
+    int c = 0;
+    for (int i = 1; i * i <= n; i++)
+    {
+        if (n % i == 0)
+        {
+            c++;
+            if (n / i != i)
+                c++;
+        }
+    }
+
+    c == 2 ? printf("%d Prime\n", n) : printf("%d Not Prime\n", n);
+}
+
 int main()
 {
-    printDivisors(36);
+    for (int i = 0; i <= 36; i++)
+    {
+        isPrime(i);
+    }
     return 0;
 }
