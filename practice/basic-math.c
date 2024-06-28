@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void extractDigitsReverseOrder(int x) // O(log10(N))
 {
@@ -30,9 +31,9 @@ void printDivisors(int n)
     {
         if (n % i == 0)
         {
-            printf("%d\n", (int)i);
+            printf("%d\n", i);
             if (n / i != i)
-                printf("%d\n", (int)n / (int)i);
+                printf("%d\n", n / i);
         }
     }
 }
@@ -118,9 +119,34 @@ int rEuclidean(int a, int b)
     return a > b ? euclidean(a % b, b) : euclidean(b % a, a);
 }
 
+void findDivisors(int n)
+{
+    // find number of divisors for numbers from 1 to n
+    // iterating through multiples
+    // O(nlog(n)) < O(n*sqrt(n))
+
+    int *H = (int *)malloc((n + 1) * sizeof(int));
+
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = i; j <= n; j += i)
+        {
+            H[j]++;
+        }
+    }
+
+    for (int i = 1; i < 7; i++)
+    {
+        printf("%d ", H[i]);
+    }
+    printf("\n");
+
+    free(H);
+}
+
 int main()
 {
 
-    printf("%d\n", euclidean(1024, 348));
+    findDivisors(6);
     return 0;
 }
