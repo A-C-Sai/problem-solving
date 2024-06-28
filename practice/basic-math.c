@@ -22,12 +22,23 @@ int reverseNumber(int x)
     return res;
 }
 
+// Amstrong Numbers - numbers whose sum of cubes of each individual digit result in the original number
+
+void printDivisors(double n)
+{
+    for (double i = 1; i * i <= n; i++) // O(sqrt(N))
+    {
+        if ((int)n % (int)i == 0)
+        {
+            printf("%d\n", (int)i);
+            if ((int)n / (int)i != i)
+                printf("%d\n", (int)n / (int)i);
+        }
+    }
+}
+
 int main()
 {
-
-    // extractDigitsReverseOrder(7892);
-    int a = reverseNumber(8769000);
-    printf("%d\n", a);
-
+    printDivisors(36);
     return 0;
 }
