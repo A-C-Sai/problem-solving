@@ -9,7 +9,7 @@ int main()
 
     /*
                 min     max
-        time    O(1)    O(n^2)
+        time    O(n)    O(n^2)
         swap    O(1)    O(n^2) --> if array is sorted in descending order
 
         adaptive by nature O(n)
