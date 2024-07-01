@@ -1,0 +1,38 @@
+shell sort is an extension of insertion sort
+adaptive algorithm
+
+Like in insertion sort the elements are inserted an after another consecutively but in 
+shell sort the element are inserted but they are distanced apart. 
+
+In each pass we make small shifts
+
+void swap(int *x,int *y)
+{
+    int temp=*x;
+    *x=*y;
+    *y=temp;
+}
+
+void ShellSort(int A[],int n)
+{
+    int gap,i,j,temp;
+
+    for(gap=n/2;gap>=1;gap/=2)
+    {
+        for(i=gap;i<n;i++)
+        {
+            temp=A[i];
+            j=i-gap;
+            while(j>=0 && A[j]>temp)
+            {
+                A[j+gap]=A[j];
+                j=j-gap;
+            }
+            A[j+gap]=temp;
+
+        }
+    }
+
+}
+
+O(nlogn) / O(n^1.5) / O(n^5/3)
