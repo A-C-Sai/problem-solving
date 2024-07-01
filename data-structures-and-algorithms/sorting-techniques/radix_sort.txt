@@ -1,0 +1,11 @@
+radix sort is similar to count and bin sort.
+
+differences:
+    1. number of bins depends on the number system (for decimal 10 bins)
+    2. Number of passes depends on the largest number
+    3. In each pass extract the last digit the the 2nd last ... so on and put it into corresponding bin (use % and /)
+    4. copy back to original array in FIFO fashion 
+
+
+Space in decreased but number of passes increased
+O(n)
