@@ -32,7 +32,6 @@ void quickSort(int A[], int l, int h)
     // Worst Case - Sorted list (assuming we choose the first element as pivot) O(n^2) --> worst time always regardless of pivot position
     // divide and conquer algorithm; recursive algo
     // Space Complexity - O(logn) to O(n) max size of stack
-    // recurrence relation: T(N) = 2T(N/2)+n
     if (l < h)
     {
         int j = partition(A, l, h);
