@@ -40,17 +40,18 @@ void reverse3(int A[], int n, int i)
     reverse3(A, n, i + 1);
 }
 
+// Check if String is palindrome or not
+bool isPalindrome(string s, int i)
+{
+    if (i == s.length() / 2)
+        return true;
+    if (s[i] != s[s.length() - 1 - i])
+        return false;
+    return isPalindrome(s, i + 1);
+}
+
 int main()
 {
 
-    int arr[6] = {2, 3, 5, 4, 7, 8};
-    int i;
-    for (i = 0; i < 6; i++)
-        cout << arr[i] << " ";
-    cout << endl;
-    reverse3(arr, 6, 0);
-    for (i = 0; i < 6; i++)
-        cout << arr[i] << " ";
-    cout << endl;
     return 0;
 }
