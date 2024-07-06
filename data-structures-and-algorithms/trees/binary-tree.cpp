@@ -89,9 +89,30 @@ void postorder(struct Node *node) // O(n)
     cout << endl;
 }
 
+void iPreorder(struct Node *node)
+{
+    stack<struct Node *> st;
+    while (!(node == nullptr && st.empty()))
+    {
+        if (node)
+        {
+            cout << node->data << " ";
+            st.push(node);
+            node = node->lchild;
+        }
+        else
+        {
+            node = st.top()->rchild;
+            st.pop();
+        }
+    }
+    cout << endl;
+}
+
 int main()
 {
     createTree();
+    iPreorder(root);
 
     return 0;
 }
