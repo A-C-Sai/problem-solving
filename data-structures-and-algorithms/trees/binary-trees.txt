@@ -50,4 +50,27 @@ deg(0) = deg(2) + 1
 
 
 
+#################################################
+              Strict Binary Tree
+#################################################
 
+childern = {0,2}
+
+
+1. Given Height, # of Nodes:
+
+    Min(n) = 2h+1
+    Max(n) = 2^(h+1) - 1 
+
+    2h+1 <= n <= 2^(h+1) - 1
+
+2. Given # of Nodes, height:
+
+    Min(h) = log[2](n+1) - 1  
+    Max(h) = (n - 1) / 2
+
+    log[2](n+1) - 1 <= h <= (n - 1)/2
+    O(logn)                 O(n)
+
+
+# External Nodes = # Internal Nodes + 1
