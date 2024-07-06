@@ -1,0 +1,35 @@
+#############################################################
+                        m-ary trees
+#############################################################
+
+
+3-ary tree: children = {0,1,2,3}
+4-ary tree: children = {0,1,2,3,4}
+m-ary tree: children = {0,1,2,3,....,m}
+
+
+
+##################################
+        strict m-ary tree
+##################################
+
+-> strict m-ary tree, degree of node = {0,m}
+
+
+1. Given Height, # of Nodes:
+
+    Min(n) = mh+1
+    Max(n) = (m^(h+1)-1) / (m-1) 
+
+
+2. Given # of Nodes, height:
+
+    Min(h) = log[m](n(m-1)+1)-1
+    Max(h) = (n - 1)/m
+
+
+# External Nodes = (m-1) * # Internal Nodes + 1
+
+
+
+   
