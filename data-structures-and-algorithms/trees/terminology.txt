@@ -1,0 +1,27 @@
+Tree is a collection of:
+    - nodes
+    - edges
+
+-> N nodes, N-1 edges
+
+-> Among these nodes, one node is the ROOT node, rest of the nodes are divided into disjoint subsets.
+-> Each subset is a tree/ subtree again.
+
+###################
+    Terminology
+###################
+
+1. root
+2. parent
+3. child
+4. sibilings - childern of same parent
+5. descendents
+6. ancestors
+7. degree of a node (# of direct childern)
+
+NOTE : Degree of a tree is pre-determined, cannot tell by observing
+
+8. internal/ external nodes
+9. levels (starts from 1 onwards) i.e. count nodes
+10. height (starts from 0 onwards) i.e. count edges
+11. forest (collection of trees)
