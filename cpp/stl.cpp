@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    /* Pairs
     pair<int, int> p = {1, 3};
     cout << "First Element: "
          << p.first
@@ -23,9 +24,11 @@ int main()
          << nested_pairs.second.first
          << " "
          << nested_pairs.second.second;
+    */
 
     pair<int, int> arr[] = {{1, 2}, {3, 4}, {5, 6}};
 
+    /* Vectors - self-managed array (dynamic array)
     vector<int> v;
     // v.push_back(1);
     // v.emplace_back(2);
@@ -104,6 +107,29 @@ int main()
     // v1.swap(v2)
     // v1 -> {30,40}
     // v2 -> {10,20}
+    */
 
+    /* List - Doubly Linked List
+    list<int> ls;
+    */
+
+    /* Deque - manages its elements with a dynamic array
+    deque<int> d;
+    */
+
+    /* Stack - LIFO
+    stack<int> st;
+    st.push(5);
+    st.top();
+    st.pop();
+    */
+
+    /* Queue - FIFO
+    queue<int> q;
+    q.push(element);
+    q.back();
+    q.front();
+    q.pop();
+    */
     return 0;
 }
