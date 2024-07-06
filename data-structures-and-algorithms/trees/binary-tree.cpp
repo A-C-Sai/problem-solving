@@ -51,6 +51,44 @@ void createTree()
     }
 }
 
+void preorder(struct Node *node) // O(n)
+{
+    // # of calls : n (for # of nodes) + (n+1) (for null pointers) = 2n+1
+    // stack size : O(h+2) where logn <= h <= n
+    if (node)
+    {
+        cout << node->data << " ";
+        preorder(node->lchild);
+        preorder(node->rchild);
+    }
+    cout << endl;
+}
+
+void inorder(struct Node *node) // O(n)
+{
+    // # of calls : n (for # of nodes) + (n+1) (for null pointers) = 2n+1
+    // stack size : h+2 where logn <= h <= n
+    if (node)
+    {
+        inorder(node->lchild);
+        cout << node->data << " ";
+        inorder(node->rchild);
+    }
+    cout << endl;
+}
+
+void postorder(struct Node *node) // O(n)
+{
+
+    if (node)
+    {
+        postorder(node->lchild);
+        postorder(node->rchild);
+        cout << node->data << " ";
+    }
+    cout << endl;
+}
+
 int main()
 {
     createTree();
