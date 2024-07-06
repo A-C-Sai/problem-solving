@@ -27,7 +27,7 @@ void createTree()
     while (!q.empty())
     {
         p = q.front();
-        cout << "Enter Left Child Value: ";
+        cout << "Enter Left Child Value of " << p->data << ": ";
         cin >> x;
         if (x != -1)
         {
@@ -37,7 +37,7 @@ void createTree()
             p->lchild = t;
             q.push(t);
         }
-        cout << "Enter Right Child Value: ";
+        cout << "Enter Right Child Value of " << p->data << ": ";
         cin >> x;
         if (x != -1)
         {
