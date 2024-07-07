@@ -1,0 +1,12 @@
+BST:
+ - A binary tree
+ - for every node, 
+    all the elements in the left subtree are smaller than the node
+    all the elements in the right subtree are greater than the node
+
+Properties:
+    - No duplicates
+    - If we perform Inorder traversal on BST we get elements in sorted order
+    - No. of BST for 'n' Nodes : catalan number (each shape can only be filled in one way to get the same inorder)
+
+Mostly we use linked representation for BST.
