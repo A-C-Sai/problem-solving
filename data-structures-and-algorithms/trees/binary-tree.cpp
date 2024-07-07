@@ -159,10 +159,28 @@ void iPostorder(struct Node *node)
     cout << endl;
 }
 
+void levelOrderTraversal()
+{
+    queue<struct Node *> q;
+    q.push(root);
+    struct Node *t;
+    while (!q.empty())
+    {
+        t = q.front();
+
+        cout << t->data << " ";
+        if (t->lchild)
+            q.push(t->lchild);
+        if (t->rchild)
+            q.push(t->rchild);
+        q.pop();
+    }
+}
+
 int main()
 {
     createTree();
-    iPostorder(root);
+    levelOrderTraversal();
 
     return 0;
 }
