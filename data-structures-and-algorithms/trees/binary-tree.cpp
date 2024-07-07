@@ -130,10 +130,39 @@ void iInorder(struct Node *node)
     cout << endl;
 }
 
+void iPostorder(struct Node *node)
+{
+    stack<pair<struct Node *, bool>> st;
+    pair<struct Node *, bool> t;
+    while (!(node == nullptr && st.empty()))
+    {
+        if (node)
+        {
+            st.push({node, true});
+            node = node->lchild;
+        }
+        else
+        {
+            t = st.top();
+            st.pop();
+
+            if (t.second)
+            {
+                t.second = false;
+                st.push(t);
+                node = t.first->rchild;
+            }
+            else
+                cout << t.first->data << " ";
+        }
+    }
+    cout << endl;
+}
+
 int main()
 {
     createTree();
-    iInorder(root);
+    iPostorder(root);
 
     return 0;
 }
