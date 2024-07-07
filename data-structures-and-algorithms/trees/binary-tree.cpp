@@ -109,10 +109,31 @@ void iPreorder(struct Node *node)
     cout << endl;
 }
 
+void iInorder(struct Node *node)
+{
+    stack<struct Node *> st;
+    while (!(node == nullptr && st.empty()))
+    {
+        if (node)
+        {
+            st.push(node);
+            node = node->lchild;
+        }
+        else
+        {
+            node = st.top();
+            st.pop();
+            cout << node->data << " ";
+            node = node->rchild;
+        }
+    }
+    cout << endl;
+}
+
 int main()
 {
     createTree();
-    iPreorder(root);
+    iInorder(root);
 
     return 0;
 }
