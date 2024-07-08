@@ -76,32 +76,52 @@ void inorder(struct Node *n)
     cout << endl;
 }
 
-void search(struct Node *n, int key)
+struct Node *search(struct Node *n, int key)
 {
     while (n)
     {
         if (n->data == key)
         {
-            cout << key << " found" << endl;
-            return;
+            return n;
         }
         else if (key < n->data)
             n = n->lchild;
         else
             n = n->rchild;
     }
-    cout << key << " not found" << endl;
+    return nullptr;
 }
+
+struct Node *inorderPredecessor(struct Node *node)
+{ // right most node of left subtree
+    node = node->lchild;
+    while (node && node->rchild)
+    {
+        node = node->rchild;
+    }
+    return node;
+}
+
+struct Node *inorderSuccessor(struct Node *node)
+{ // left most node of right subtree
+    node = node->rchild;
+    while (node && node->lchild)
+    {
+        node = node->lchild;
+    }
+    return node;
+}
+
+// TODO: Understand and implement deleteNode in BST
+// search and delete
+// replace deleted node with either inorder predecessor or inorder successor
+// O(logn)
+// modifications O(logn)
 
 int main()
 {
-    vector<int> vec = {8, 20, 9, 7, 2, 2, 39, 40, 77, 99, 1, 30, 0, 1};
+    vector<int> vec = {8, 20, 9, 7, 2, 1, 30};
     createBST(vec);
-    inorder(root);
-    search(root, 1);
-    search(root, 21);
-    search(root, 39);
-    search(root, 36);
 
     return 0;
 }
