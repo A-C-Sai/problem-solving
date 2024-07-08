@@ -118,6 +118,13 @@ struct Node *inorderSuccessor(struct Node *node)
 // O(logn)
 // modifications O(logn)
 
+// TODO: generating BST from preorder or postorder
+// one of BST's properties is that the inorder give the sorted order of elements
+// either the preorder or postorder is enough to create a BST
+// O(n)
+// clue: need a stack, understand how elements are positioned (conditions which dictate their position)
+// clue: in preorder root is the first element, in postorder root is the last element
+
 int main()
 {
     vector<int> vec = {8, 20, 9, 7, 2, 1, 30};
