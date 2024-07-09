@@ -1,0 +1,5 @@
+Things to consider while choosing a data structure:
+	- What needs to be stored?
+	- cost of most frequently performed operations (we want to minimise these)
+	- memory usage
+	- ease of implementation
