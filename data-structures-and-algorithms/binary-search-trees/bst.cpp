@@ -151,6 +151,10 @@ struct Node *inorderSuccessor(struct Node *node)
     return node;
 }
 
+// Logic:
+// Min element : left most element of left subtree
+// Max element : right most element of right subtree
+
 // TODO: Understand and implement deleteNode in BST
 // search and delete
 // replace deleted node with either inorder predecessor or inorder successor
