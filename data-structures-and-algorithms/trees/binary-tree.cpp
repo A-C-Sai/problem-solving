@@ -177,10 +177,19 @@ void levelOrderTraversal()
     }
 }
 
+int countNodes(struct Node *node)
+{
+    if (node)
+    {
+        return countNodes(node->lchild) + countNodes(node->rchild) + 1;
+    }
+    return 0;
+}
+
 int main()
 {
     createTree();
-    levelOrderTraversal();
+    cout << countNodes(root) << endl;
 
     return 0;
 }
