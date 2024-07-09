@@ -55,6 +55,27 @@ void createBST(vector<int> v)
     }
 }
 
+struct Node *rInsert(struct Node *node, int n)
+{
+    if (node == nullptr)
+    {
+        struct Node *t = new struct Node;
+        t->lchild = t->rchild = nullptr;
+        t->data = n;
+        return t;
+    }
+
+    if (n < node->data)
+    {
+        node->lchild = rInsert(node->lchild, n);
+    }
+    else if (n > node->data)
+    {
+        node->rchild - rInsert(node->rchild, n);
+    }
+    return node;
+}
+
 void inorder(struct Node *n)
 {
     stack<struct Node *> st;
