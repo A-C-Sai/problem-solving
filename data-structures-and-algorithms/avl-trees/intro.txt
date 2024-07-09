@@ -1,0 +1,15 @@
+AVL trees - height balanced BSTs
+
+Height of a tree is balanced using:
+    balance factor = height of left subtree - height of right subtree
+    
+    for each node |bf| <= 1 i.e. bf = {-1,0,1}
+
+    In this data structure, the heights of two child subtrees of any node differ by a maximum of one.
+
+    if |bf| <= 1 then node is balanced
+    if |bf| > 1 then node is imbalanced
+
+    if any one node is imbalanced then we say the tree is imbalanced
+
+    tree is balanced by performing rotations
