@@ -71,7 +71,7 @@ struct Node *rInsert(struct Node *node, int n)
     }
     else if (n > node->data)
     {
-        node->rchild - rInsert(node->rchild, n);
+        node->rchild = rInsert(node->rchild, n);
     }
     return node;
 }
@@ -113,6 +113,25 @@ struct Node *search(struct Node *n, int key)
     return nullptr;
 }
 
+void rSearch(struct Node *node, int n)
+{
+    if (node == nullptr)
+    {
+        cout << "Search Unsuccessful" << endl;
+        return;
+    }
+
+    if (node->data == n)
+    {
+        cout << "Found element" << endl;
+        return;
+    }
+    else if (n < node->data)
+        rSearch(node->lchild, n);
+    else
+        rSearch(node->rchild, n);
+}
+
 struct Node *inorderPredecessor(struct Node *node)
 { // right most node of left subtree
     node = node->lchild;
@@ -150,6 +169,9 @@ int main()
 {
     vector<int> vec = {8, 20, 9, 7, 2, 1, 30};
     createBST(vec);
+    rSearch(root, 7);
+    rSearch(root, 2);
+    rSearch(root, 31);
 
     return 0;
 }
