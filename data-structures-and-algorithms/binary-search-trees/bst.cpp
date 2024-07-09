@@ -59,13 +59,11 @@ struct Node *rInsert(struct Node *node, int n)
 {
     if (node == nullptr)
     {
-        struct Node *t = new struct Node;
-        t->lchild = t->rchild = nullptr;
-        t->data = n;
-        return t;
+        node = new struct Node;
+        node->lchild = node->rchild = nullptr;
+        node->data = n;
     }
-
-    if (n < node->data)
+    else if (n < node->data)
     {
         node->lchild = rInsert(node->lchild, n);
     }
@@ -73,6 +71,7 @@ struct Node *rInsert(struct Node *node, int n)
     {
         node->rchild = rInsert(node->rchild, n);
     }
+
     return node;
 }
 
