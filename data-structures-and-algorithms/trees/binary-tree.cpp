@@ -186,10 +186,22 @@ int countNodes(struct Node *node)
     return 0;
 }
 
+int treeHeight(struct Node *node)
+{
+    // height of tree = # of edges in the longest path from root node to a leaf node
+    // height of tree = height of root node
+    // height of tree with 1 node = 0
+    // runtime will we proportional to the # of nodes O(n)
+    if (node == nullptr)
+        return -1;
+    return max(treeHeight(node->lchild), treeHeight(node->rchild)) + 1;
+}
+
 int main()
 {
     createTree();
     cout << countNodes(root) << endl;
+    cout << treeHeight(root) << endl;
 
     return 0;
 }
