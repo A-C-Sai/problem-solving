@@ -142,7 +142,10 @@ struct Node *inorderPredecessor(struct Node *node)
 }
 
 struct Node *inorderSuccessor(struct Node *node)
-{ // left most node of right subtree; minimim in right subtree
+{
+    // left most node of right subtree; minimim in right subtree
+    // TODO: What if give node doesnt have a right subtree, implement later
+
     node = node->rchild;
     while (node && node->lchild)
     {
