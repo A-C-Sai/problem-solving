@@ -49,7 +49,7 @@ void insert(int key)
 
 void createBST(vector<int> v)
 {
-    for (auto i = v.begin(); i != v.end(); i++)
+    for (vector<int>::iterator i = v.begin(); i != v.end(); i++)
     {
         insert(*i);
     }
@@ -142,7 +142,7 @@ struct Node *inorderPredecessor(struct Node *node)
 }
 
 struct Node *inorderSuccessor(struct Node *node)
-{ // left most node of right subtree
+{ // left most node of right subtree; minimim in right subtree
     node = node->rchild;
     while (node && node->lchild)
     {
@@ -155,11 +155,67 @@ struct Node *inorderSuccessor(struct Node *node)
 // Min element : left most element of left subtree
 // Max element : right most element of right subtree
 
-// TODO: Understand and implement deleteNode in BST
-// search and delete
-// replace deleted node with either inorder predecessor or inorder successor
-// O(logn)
-// modifications O(logn)
+// TODO: try to implement recursive deleteNode in BST but the current approach seems more intuitive and consumes less stack space
+
+bool degree0(struct Node *node)
+{ // check if node is a leaf node
+    return node->lchild == node->rchild;
+}
+bool degree1(struct Node *node)
+{ // check if node has only one child
+    return (node->lchild && node->rchild == nullptr) || (node->rchild && node->lchild == nullptr);
+}
+bool degree2(struct Node *node)
+{ // check if node has 2 children
+    return node->lchild && node->rchild;
+}
+
+struct Node *deleteNode(struct Node *node, int value)
+{
+    // search and delete
+    // replace deleted node with either inorder predecessor or inorder successor
+    // O(logn) - search for key and inorder successor
+    // stack size O(1), 1st call is call to delete specified node, 2nd call to delete inorder successor
+
+    struct Node *p = node, *q = nullptr;
+    while (p && p->data != value) // p will try to find the node of interest, q will be the tailing pointer to its parent
+    {
+        q = p;
+        if (value < p->data)
+            p = p->lchild;
+        else
+            p = p->rchild;
+    }
+
+    if (p)
+    {
+        if (degree0(p))
+        {
+            p->data < q->data ? q->lchild = nullptr : q->rchild = nullptr;
+            free(p);
+        }
+        else if (degree1(p))
+        {
+            if (p->lchild)
+            {
+                p->data < q->data ? q->lchild = p->lchild : q->rchild = p->lchild;
+            }
+            else
+            {
+                p->data < q->data ? q->lchild = p->rchild : q->rchild = p->rchild;
+            }
+            free(p);
+        }
+        else
+        {
+            // if node to be deleted has has 2 children replace it with the inorder successor
+            // Inorder successor has children = {0,1} i.e. trivial problem
+            int t = inorderSuccessor(p)->data; // store inorder successor data
+            deleteNode(root, t);               // delete inorder successor first
+            p->data = t;                       // replace current node data with inorder successor data
+        }
+    }
+}
 
 // TODO: generating BST from preorder or postorder
 // one of BST's properties is that the inorder give the sorted order of elements
@@ -170,11 +226,10 @@ struct Node *inorderSuccessor(struct Node *node)
 
 int main()
 {
-    vector<int> vec = {8, 20, 9, 7, 2, 1, 30};
+    vector<int> vec = {8, 20, 9, 7, 2, 1, 30, 25, 79, 32, 14, 26, 5};
     createBST(vec);
-    rSearch(root, 7);
-    rSearch(root, 2);
-    rSearch(root, 31);
-
+    inorder(root);
+    deleteNode(root, 20);
+    inorder(root);
     return 0;
 }
