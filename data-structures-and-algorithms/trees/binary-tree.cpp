@@ -130,34 +130,34 @@ void iInorder(struct Node *node)
     cout << endl;
 }
 
-void iPostorder(struct Node *node)
-{
-    stack<pair<struct Node *, bool>> st;
-    pair<struct Node *, bool> t;
-    while (!(node == nullptr && st.empty()))
-    {
-        if (node)
-        {
-            st.push({node, true});
-            node = node->lchild;
-        }
-        else
-        {
-            t = st.top();
-            st.pop();
+// void iPostorder(struct Node *node)
+// {
+//     stack<pair<struct Node *, bool>> st;
+//     pair<struct Node *, bool> t;
+//     while (!(node == nullptr && st.empty()))
+//     {
+//         if (node)
+//         {
+//             st.push({node, true});
+//             node = node->lchild;
+//         }
+//         else
+//         {
+//             t = st.top();
+//             st.pop();
 
-            if (t.second)
-            {
-                t.second = false;
-                st.push(t);
-                node = t.first->rchild;
-            }
-            else
-                cout << t.first->data << " ";
-        }
-    }
-    cout << endl;
-}
+//             if (t.second)
+//             {
+//                 t.second = false;
+//                 st.push(t);
+//                 node = t.first->rchild;
+//             }
+//             else
+//                 cout << t.first->data << " ";
+//         }
+//     }
+//     cout << endl;
+// }
 
 void levelOrderTraversal()
 {
@@ -197,11 +197,49 @@ int treeHeight(struct Node *node)
     return max(treeHeight(node->lchild), treeHeight(node->rchild)) + 1;
 }
 
+bool checkLeftSubTree(struct Node *node, int value)
+{
+    // performing preorder traversal of every node in the left subtree of a given node
+    if (node)
+    {
+        if (node->data < value)
+        {
+            return checkLeftSubTree(node->lchild, value) && checkLeftSubTree(node->rchild, value);
+        }
+        return false;
+    }
+    return true;
+}
+
+bool checkRightSubTree(struct Node *node, int value)
+{
+    // performing preorder traversal of every node in the left subtree of a given node
+    if (node)
+    {
+        if (node->data > value)
+        {
+            return checkRightSubTree(node->lchild, value) && checkRightSubTree(node->rchild, value);
+        }
+        return false;
+    }
+    return true;
+}
+
+bool isBST(struct Node *node) // O(n^2)
+{
+    // all elements in the left subtree have to be less than the current node
+    // all elements in the right subtree have to be greater than the current node
+    // for every node all it descendents are visited
+    // TODO: inorder traversal of a BST should give us sorted list this will reduce time complexity to O(n)
+    if (node == nullptr)
+        return true;
+    return checkLeftSubTree(node->lchild, node->data) && checkRightSubTree(node->rchild, node->data) && isBST(node->lchild) && isBST(node->rchild);
+}
+
 int main()
 {
     createTree();
-    cout << countNodes(root) << endl;
-    cout << treeHeight(root) << endl;
+    isBST(root) == true ? cout << "BST" << endl : cout << "NOT BST" << endl;
 
     return 0;
 }
