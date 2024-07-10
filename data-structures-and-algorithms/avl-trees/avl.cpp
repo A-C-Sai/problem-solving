@@ -18,6 +18,67 @@ int nodeHeight(struct Node *node)
     return max(nodeHeight(node->lchild), nodeHeight(node->rchild)) + 1;
 }
 
+struct Node *LLrotation(struct Node *node)
+{
+    struct Node *p = node->lchild;
+    node->lchild = p->rchild;
+    p->rchild = node;
+    p->balanceFactor = nodeHeight(p->lchild) - nodeHeight(p->rchild);
+    p->rchild->balanceFactor = nodeHeight(p->rchild->lchild) - nodeHeight(p->rchild->rchild);
+
+    if (node == root)
+        root = p;
+    return p;
+}
+
+struct Node *RRrotation(struct Node *node)
+{
+    struct Node *p = node->rchild;
+    node->rchild = p->lchild;
+    p->lchild = node;
+    p->balanceFactor = nodeHeight(p->lchild) - nodeHeight(p->rchild);
+    p->lchild->balanceFactor = nodeHeight(p->lchild->lchild) - nodeHeight(p->lchild->rchild);
+    if (node == root)
+        root = p;
+    return p;
+}
+
+struct Node *LRrotation(struct Node *node)
+{
+    struct Node *p = node->lchild->rchild;
+    struct Node *pl = p->lchild;
+    struct Node *pr = p->rchild;
+    p->lchild = node->lchild;
+    p->rchild = node;
+    node->lchild->rchild = pl;
+    node->lchild = pr;
+    p->balanceFactor = nodeHeight(p->lchild) - nodeHeight(p->rchild);
+    p->lchild->balanceFactor = nodeHeight(p->lchild->lchild) - nodeHeight(p->lchild->rchild);
+    p->rchild->balanceFactor = nodeHeight(p->rchild->lchild) - nodeHeight(p->rchild->rchild);
+
+    if (node == root)
+        root = p;
+    return p;
+}
+
+struct Node *RLrotation(struct Node *node)
+{
+    struct Node *p = node->rchild->lchild;
+    struct Node *pl = p->lchild;
+    struct Node *pr = p->rchild;
+    p->lchild = node;
+    p->rchild = node->rchild;
+    node->rchild->lchild = pr;
+    node->rchild = pl;
+    p->balanceFactor = nodeHeight(p->lchild) - nodeHeight(p->rchild);
+    p->lchild->balanceFactor = nodeHeight(p->lchild->lchild) - nodeHeight(p->lchild->rchild);
+    p->rchild->balanceFactor = nodeHeight(p->rchild->lchild) - nodeHeight(p->rchild->rchild);
+
+    if (node == root)
+        root = p;
+    return p;
+}
+
 struct Node *Insert(struct Node *node, int value)
 {
     if (node == nullptr)
@@ -40,41 +101,19 @@ struct Node *Insert(struct Node *node, int value)
 
     if (node->balanceFactor == 2 && node->lchild->balanceFactor == 1)
     { // LL rotation
-        root = node->lchild;
-        root->rchild == nullptr ? node->lchild = nullptr : node->lchild = root->rchild;
-        root->rchild = node;
-        node->balanceFactor = nodeHeight(node->lchild) - nodeHeight(node->rchild);
-        root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
+        return LLrotation(node);
     }
     else if (node->balanceFactor == -2 && node->rchild->balanceFactor == -1)
     { // RR rotation
-        root = node->rchild;
-        root->lchild == nullptr ? node->rchild = nullptr : node->rchild = root->lchild;
-        root->lchild = node;
-        node->balanceFactor = nodeHeight(node->lchild) - nodeHeight(node->rchild);
-        root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
+        return RRrotation(node);
     }
     else if (node->balanceFactor == 2 && node->lchild->balanceFactor == -1)
     { // LR rotation
-        root = node->lchild->rchild;
-        root->lchild == nullptr ? node->lchild->rchild = nullptr : node->lchild->rchild = root->lchild;
-        root->lchild = node->lchild;
-        root->rchild == nullptr ? node->lchild = nullptr : node->lchild = root->rchild;
-        root->rchild = node;
-        root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
-        root->lchild->balanceFactor = nodeHeight(root->lchild->lchild) - nodeHeight(root->lchild->rchild);
-        root->rchild->balanceFactor = nodeHeight(root->rchild->lchild) - nodeHeight(root->rchild->rchild);
+        return LRrotation(node);
     }
     else if (node->balanceFactor == -2 && node->rchild->balanceFactor == 1)
     { // RL rotation
-        root = node->rchild->lchild;
-        root->rchild == nullptr ? node->rchild->lchild = nullptr : node->rchild->lchild = root->rchild;
-        root->rchild = node->rchild;
-        root->lchild == nullptr ? node->rchild = nullptr : node->rchild = root->lchild;
-        root->lchild = node;
-        root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
-        root->lchild->balanceFactor = nodeHeight(root->lchild->lchild) - nodeHeight(root->lchild->rchild);
-        root->rchild->balanceFactor = nodeHeight(root->rchild->lchild) - nodeHeight(root->rchild->rchild);
+        return RLrotation(node);
     }
 
     return node;
@@ -82,8 +121,8 @@ struct Node *Insert(struct Node *node, int value)
 
 int main()
 {
-    int arr[15] = {10, 30, 20, 45, 19, 31, 15, 33, 29, 50, 8, 7, 36, 46, 17};
-    for (int i = 0; i < 15; i++)
+    int arr[14] = {67, 50, 45, 30, 25, 39, 58, 22, 79, 5, 4, 3, 70, 37};
+    for (int i = 0; i < 14; i++)
     {
         if (root == nullptr)
         {
@@ -93,5 +132,6 @@ int main()
             Insert(root, arr[i]);
     }
 
+    cout << nodeHeight(root) << endl;
     return 0;
 }
