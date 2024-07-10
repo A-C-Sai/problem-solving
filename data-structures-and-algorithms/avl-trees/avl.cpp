@@ -82,8 +82,8 @@ struct Node *Insert(struct Node *node, int value)
 
 int main()
 {
-    int arr[3] = {10, 20, 30};
-    for (int i = 0; i < 3; i++)
+    int arr[15] = {10, 30, 20, 45, 19, 31, 15, 33, 29, 50, 8, 7, 36, 46, 17};
+    for (int i = 0; i < 15; i++)
     {
         if (root == nullptr)
         {
