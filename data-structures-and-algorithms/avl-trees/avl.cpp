@@ -46,6 +46,15 @@ struct Node *Insert(struct Node *node, int value)
         node->balanceFactor = nodeHeight(node->lchild) - nodeHeight(node->rchild);
         root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
     }
+    else if (node->balanceFactor == -2 && node->lchild->balanceFactor == -1)
+    { // RR rotation
+        root = node->rchild;
+        root->lchild == nullptr ? node->rchild = nullptr : node->rchild = root->lchild;
+        root->lchild = node;
+        node->balanceFactor = nodeHeight(node->lchild) - nodeHeight(node->rchild);
+        root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
+    }
+
     return node;
 }
 
