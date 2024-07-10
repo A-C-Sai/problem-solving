@@ -46,7 +46,7 @@ struct Node *Insert(struct Node *node, int value)
         node->balanceFactor = nodeHeight(node->lchild) - nodeHeight(node->rchild);
         root->balanceFactor = nodeHeight(root->lchild) - nodeHeight(root->rchild);
     }
-    else if (node->balanceFactor == -2 && node->lchild->balanceFactor == -1)
+    else if (node->balanceFactor == -2 && node->rchild->balanceFactor == -1)
     { // RR rotation
         root = node->rchild;
         root->lchild == nullptr ? node->rchild = nullptr : node->rchild = root->lchild;
@@ -65,7 +65,7 @@ struct Node *Insert(struct Node *node, int value)
         root->lchild->balanceFactor = nodeHeight(root->lchild->lchild) - nodeHeight(root->lchild->rchild);
         root->rchild->balanceFactor = nodeHeight(root->rchild->lchild) - nodeHeight(root->rchild->rchild);
     }
-    else if (node->balanceFactor == -2 && node->lchild->balanceFactor == 1)
+    else if (node->balanceFactor == -2 && node->rchild->balanceFactor == 1)
     { // RL rotation
         root = node->rchild->lchild;
         root->rchild == nullptr ? node->rchild->lchild = nullptr : node->rchild->lchild = root->rchild;
@@ -82,7 +82,7 @@ struct Node *Insert(struct Node *node, int value)
 
 int main()
 {
-    int arr[3] = {30, 20, 10};
+    int arr[3] = {10, 20, 30};
     for (int i = 0; i < 3; i++)
     {
         if (root == nullptr)
