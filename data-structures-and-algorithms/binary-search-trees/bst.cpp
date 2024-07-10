@@ -154,6 +154,40 @@ struct Node *inorderSuccessor(struct Node *node)
     return node;
 }
 
+struct Node *inorderSuccessorV2(struct Node *node, int key)
+{
+
+    struct Node *successor = nullptr;
+    struct Node *addrKey = search(node, key);
+
+    if (addrKey)
+    {
+        if (addrKey->rchild)
+        {
+            successor = addrKey->rchild;
+            while (successor && successor->lchild)
+            {
+                successor = successor->lchild;
+            }
+        }
+        else
+        {
+            struct Node *ancestor = root;
+            while (ancestor != addrKey)
+            {
+                if (key < ancestor->data)
+                {
+                    successor = ancestor;
+                    ancestor = ancestor->lchild;
+                }
+                else
+                    ancestor = ancestor->rchild;
+            }
+        }
+    }
+    return successor;
+}
+
 // Logic:
 // Min element : left most element of left subtree
 // Max element : right most element of right subtree
@@ -173,7 +207,7 @@ bool degree2(struct Node *node)
     return node->lchild && node->rchild;
 }
 
-struct Node *deleteNode(struct Node *node, int value)
+void deleteNode(struct Node *node, int value)
 {
     // search and delete
     // replace deleted node with either inorder predecessor or inorder successor
@@ -229,10 +263,26 @@ struct Node *deleteNode(struct Node *node, int value)
 
 int main()
 {
-    vector<int> vec = {8, 20, 9, 7, 2, 1, 30, 25, 79, 32, 14, 26, 5};
+    vector<int> vec;
+    vec.push_back(8);
+    vec.push_back(20);
+    vec.push_back(9);
+    vec.push_back(7);
+    vec.push_back(2);
+    vec.push_back(1);
+    vec.push_back(30);
+    vec.push_back(25);
+    vec.push_back(79);
+    vec.push_back(32);
+    vec.push_back(14);
+    vec.push_back(26);
+    vec.push_back(5);
     createBST(vec);
-    inorder(root);
-    deleteNode(root, 20);
-    inorder(root);
+    for (int i = 0; i < vec.size(); i++)
+    {
+        struct Node *n = inorderSuccessorV2(root, vec[i]);
+        n == nullptr ? cout << vec[i] << " Maximum element in the tree" << endl : cout << vec[i] << " " << n->data << endl;
+    }
+
     return 0;
 }
