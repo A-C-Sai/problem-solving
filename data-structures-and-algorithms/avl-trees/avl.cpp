@@ -135,3 +135,7 @@ int main()
     cout << nodeHeight(root) << endl;
     return 0;
 }
+
+// TODO: Deletion from AVL tree, study and implement
+// Use recursive function
+// need to make sure tree is balanced after deletion of node, perform rotations if necessary
