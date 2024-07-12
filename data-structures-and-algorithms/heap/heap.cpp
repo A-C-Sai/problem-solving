@@ -53,29 +53,43 @@ int Delete(struct Heap *h)
     h->data[0] = h->data[h->currLength - 1];
     h->currLength--;
 
-    int i = 0;
-    while ((2 * i + 1) < h->currLength || (2 * i + 2) < h->currLength)
+    int i = 0, j = 2 * i + 1; // j is currently pointing to the left child
+    while (j < h->currLength)
     {
-        int flag = 1;
-        // the gereter of the children will be swapped as we are dealing with max heap
-        if (h->data[2 * i + 1] > h->data[i])
+        if ((j + 1 < h->currLength) && (h->data[j + 1] > h->data[j]))
+            j++;
+        else if (h->data[j] > h->data[i])
         {
-            swap(&h->data[2 * i + 1], &h->data[i]);
-            i = 2 * i + 1;
-            flag = 0;
+            swap(&h->data[j], &h->data[i]);
+            i = j;
+            j = 2 * i + 1;
         }
-        else if (h->data[2 * i + 2] > h->data[i])
-        {
-            swap(&h->data[2 * i + 2], &h->data[i]);
-            i = 2 * i + 2;
-            flag = 0;
-        }
-
-        if (flag) // if the element is greater than or equal to it children it is in correct position and be exit loop
+        else
             break;
     }
-
     return maxElement;
+}
+
+void HeapSort(struct Heap *h, int Arr[], int n)
+{
+    // O(nlogn)
+    // sort elements in ascending order
+    createHeap(h, Arr, n);
+    int pos = n - 1;
+    for (int l = 0; l < n; l++)
+    {
+        h->data[pos--] = Delete(h);
+    }
+    h->currLength = n;
+}
+
+void displayHeap(struct Heap h)
+{
+    for (int i = 0; i < h.currLength; i++)
+    {
+        cout << h.data[i] << " ";
+    }
+    cout << endl;
 }
 
 int main()
@@ -84,17 +98,9 @@ int main()
     h.currLength = 0;
     h.capacity = 10;
     h.data = new int[h.capacity];
-    int arr[8] = {25, 15, 19, 12, 10, 9, 40, 32};
-    createHeap(&h, arr, 8);
-    cout << Delete(&h) << endl;
-    cout << Delete(&h) << endl;
-
-    int k;
-    for (k = 0; k < h.currLength; k++)
-    {
-        cout << h.data[k] << " ";
-    }
-    cout << endl;
+    int arr[14] = {2, 70, 45, 3, 1, 0, 35, 44, 67, 89, 75, 41, 19, 14};
+    HeapSort(&h, arr, 14);
+    displayHeap(h);
     free(h.data);
 
     return 0;
