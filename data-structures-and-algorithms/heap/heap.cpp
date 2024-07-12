@@ -46,6 +46,37 @@ void createHeap(struct Heap *h, int A[], int n) // O(nlogn)
     }
 }
 
+int Delete(struct Heap *h)
+{
+    // O(logn)
+    int maxElement = h->data[0];
+    h->data[0] = h->data[h->currLength - 1];
+    h->currLength--;
+
+    int i = 0;
+    while ((2 * i + 1) < h->currLength || (2 * i + 2) < h->currLength)
+    {
+        int flag = 1;
+        if (h->data[2 * i + 1] > h->data[i])
+        {
+            swap(&h->data[2 * i + 1], &h->data[i]);
+            i = 2 * i + 1;
+            flag = 0;
+        }
+        else if (h->data[2 * i + 2] > h->data[i])
+        {
+            swap(&h->data[2 * i + 2], &h->data[i]);
+            i = 2 * i + 2;
+            flag = 0;
+        }
+
+        if (flag) // if the element is greater than or equal to it children it is in correct position and be exit loop
+            break;
+    }
+
+    return maxElement;
+}
+
 int main()
 {
     struct Heap h;
@@ -53,9 +84,10 @@ int main()
     h.capacity = 10;
     h.data = new int[h.capacity];
     int arr[8] = {25, 15, 19, 12, 10, 9, 40, 32};
-    int arr1[3] = {70, 2, 18};
     createHeap(&h, arr, 8);
-    createHeap(&h, arr1, 3);
+    cout << Delete(&h) << endl;
+    cout << Delete(&h) << endl;
+
     int k;
     for (k = 0; k < h.currLength; k++)
     {
