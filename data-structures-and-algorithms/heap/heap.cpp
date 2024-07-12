@@ -57,6 +57,7 @@ int Delete(struct Heap *h)
     while ((2 * i + 1) < h->currLength || (2 * i + 2) < h->currLength)
     {
         int flag = 1;
+        // the gereter of the children will be swapped as we are dealing with max heap
         if (h->data[2 * i + 1] > h->data[i])
         {
             swap(&h->data[2 * i + 1], &h->data[i]);
