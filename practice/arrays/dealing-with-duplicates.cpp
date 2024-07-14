@@ -31,6 +31,25 @@ void countDuplicated(vector<int> vec) // O(n)
     }
 }
 
+void removeDuplicates(vector<int> &vec)
+{
+    // remove duplicates in-place from sorted array
+    // 2 pointer approach
+    // O(n)
+
+    int i = 0;
+    for (int j = 1; j < vec.size(); j++)
+    {
+        if (vec[j] != vec[i])
+        {
+            vec[i + 1] = vec[j];
+            i++;
+        }
+    }
+
+    cout << i + 1 << " unique elements" << endl;
+}
+
 void unsortedArrayDuplicates(vector<int> vec)
 {
     // O(n^2)
@@ -70,6 +89,7 @@ int main()
     {
         v.push_back(num);
     }
-    unsortedArrayDuplicates(v);
+    removeDuplicates(v);
+
     return 0;
 }
