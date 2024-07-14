@@ -31,6 +31,34 @@ void countDuplicated(vector<int> vec) // O(n)
     }
 }
 
+void unsortedArrayDuplicates(vector<int> vec)
+{
+    // O(n^2)
+    // finding and counting duplicates in unsorted array
+    // Can solve the problem with hashing in O(n) but require extra memory
+
+    int i;
+    for (i = 0; i < vec.size() - 1; i++)
+    {
+
+        int j;
+        int count = 1;
+        if (vec[i] != INT_MIN)
+        {
+            for (j = i + 1; j < vec.size(); j++)
+            {
+                if (vec[j] == vec[i])
+                {
+                    count++;
+                    vec[j] = INT_MIN;
+                }
+            }
+            if (count > 1)
+                cout << vec[i] << ": " << count << " times" << endl;
+        }
+    }
+}
+
 int main()
 {
     vector<int> v;
@@ -42,6 +70,6 @@ int main()
     {
         v.push_back(num);
     }
-    countDuplicated(v);
+    unsortedArrayDuplicates(v);
     return 0;
 }
