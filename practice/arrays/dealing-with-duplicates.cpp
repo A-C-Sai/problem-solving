@@ -15,6 +15,22 @@ void findDuplicates(vector<int> vec) // O(N)
     }
 }
 
+void countDuplicated(vector<int> vec) // O(n)
+{
+    int i;
+    for (i = 0; i < vec.size() - 1; i++)
+    {
+        if (vec[i + 1] == vec[i])
+        {
+            int j = i + 1;
+            while (j < vec.size() && vec[j] == vec[i])
+                j++;
+            cout << vec[i] << ": " << j - i << " times" << endl;
+            i = j - 1;
+        }
+    }
+}
+
 int main()
 {
     vector<int> v;
@@ -26,6 +42,6 @@ int main()
     {
         v.push_back(num);
     }
-    findDuplicates(v);
+    countDuplicated(v);
     return 0;
 }
