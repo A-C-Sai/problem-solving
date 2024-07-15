@@ -13,6 +13,32 @@ void Rotate(vector<int> &vec)
     vec[vec.size() - 1] = first;
 }
 
+// void leftRotate(vector<int> &vec, int D)
+// {
+//     D = D % vec.size();
+//     int temp[D];
+//     for (int i = 0; i < D; i++) // O(D)
+//     {
+//         temp[i] = vec[i];
+//     }
+//     for (int j = D; j < vec.size(); j++) // O(N-D)
+//     {
+//         vec[j - D] = vec[j];
+//     }
+//     for (int k = 0; k < D; k++) // O(D)
+//     {
+//         vec[vec.size() - D + k] = temp[k];
+//     }
+// }
+
+void leftRotate(vector<int> &vec, int D)
+{
+    D = D % vec.size();
+    reverse(vec.begin(), vec.begin() + D);
+    reverse(vec.begin() + D, vec.end());
+    reverse(vec.begin(), vec.end());
+}
+
 int main()
 {
     vector<int> v;
@@ -24,7 +50,7 @@ int main()
     {
         v.push_back(num);
     }
-    Rotate(v);
+    leftRotate(v, 6);
     for (auto x : v)
     {
         cout << x << " ";
