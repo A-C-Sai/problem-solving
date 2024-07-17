@@ -30,6 +30,21 @@ void BFS(vector<vector<int>> &graph, int entryNode) // O(V+2E)
     cout << endl;
 }
 
+void DFS(vector<vector<int>> graph, int Node)
+{
+    static vector<int> visited(graph.size(), 0);
+
+    cout << Node << " ";
+    visited[Node]++;
+    for (auto n : graph[Node])
+    {
+        if (!visited[n])
+        {
+            DFS(graph, n);
+        }
+    }
+}
+
 int main()
 {
     int nodes, edges; // total # of nodes and edges in graph
@@ -44,9 +59,9 @@ int main()
         graph[n2].push_back(n1);
     }
 
-    int entryNode;
-    cin >> entryNode;
-    BFS(graph, entryNode);
+    int Node;
+    cin >> Node;
+    DFS(graph, Node);
 
     return 0;
 }
